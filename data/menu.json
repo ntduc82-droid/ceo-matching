@@ -1,5 +1,12 @@
 {
   "menu_items": [
-    { "label": "Trang Chủ", "link": "/" }
+    {
+      "label": "Trang Chủ",
+      "link": "/"
+    },
+    {
+      "label": "Sự kiện",
+      "link": "/su-kien"
+    }
   ]
 }

@@ -20,3 +20,21 @@ collections:
       - { label: "Ảnh đại diện", name: "thumbnail", widget: "image" }
       - { label: "Mô tả ngắn", name: "description", widget: "string" }
       - { label: "Nội dung bài viết", name: "body", widget: "markdown" }
+
+      # === ĐOẠN THÊM MỚI ĐỂ QUẢN TRỊ MENU TẠI ĐÂY ===
+  - name: "settings"
+    label: "Cấu hình hệ thống"
+    delete: false # Không cho phép xóa file cấu hình này
+    editor:
+      preview: false
+    files:
+      - name: "menu"
+        label: "Quản lý Menu Navigation"
+        file: "data/menu.json" # Dữ liệu menu sẽ lưu vào file json này
+        fields:
+          - label: "Danh sách Menu"
+            name: "menu_items"
+            widget: "list" # Cho phép ấn nút "Thêm dòng/Thêm menu" trực quan
+            fields:
+              - { label: "Tên Menu (Ví dụ: Trang chủ, Tin tức)", name: "label", widget: "string" }
+              - { label: "Đường dẫn liên kết (Ví dụ: /, /blog, #contact)", name: "link", widget: "string" }

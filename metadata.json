@@ -1,0 +1,6 @@
+{
+  "name": "Giới thiệu và Quản trị Thành viên",
+  "description": "Ứng dụng giới thiệu, tìm kiếm và quản trị kết nối thành viên chuyên nghiệp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

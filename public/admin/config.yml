@@ -1,0 +1,22 @@
+# Cấu hình kết nối với GitHub thông qua Netlify
+backend:
+  name: git-gateway
+  branch: main # Đổi thành master nếu nhánh chính của bạn tên là master
+
+# Nơi lưu trữ ảnh khi bạn tải lên từ trang Admin
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# Định nghĩa các nội dung bạn muốn quản lý
+collections:
+  - name: "blog"
+    label: "Bài Viết (Blog)"
+    folder: "blog" # Thư mục chứa các bài viết
+    create: true # Cho phép bấm nút "Thêm bài viết mới"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Tiêu đề bài viết", name: "title", widget: "string" }
+      - { label: "Ngày đăng", name: "date", widget: "datetime" }
+      - { label: "Ảnh đại diện", name: "thumbnail", widget: "image" }
+      - { label: "Mô tả ngắn", name: "description", widget: "string" }
+      - { label: "Nội dung bài viết", name: "body", widget: "markdown" }

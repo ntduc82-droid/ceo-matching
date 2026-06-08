@@ -8,34 +8,32 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </StrictMode>,
 );
-// 1. Đọc file dữ liệu menu.json được tạo ra từ Admin CMS
+// 1. Đọc file dữ liệu menu.json từ Admin CMS
 // @ts-ignore
 import menuData from '../data/menu.json';
 
-// Định nghĩa cấu trúc dữ liệu để React/TypeScript không báo lỗi
+// Định nghĩa cấu trúc dữ liệu cho chuẩn TypeScript
 interface MenuItem {
   label: string;
   link: string;
 }
 
-// Hàm tự động vẽ menu ra giao diện HTML sau khi trang tải xong
-const renderMenu = () => {
-  const mainMenuContainer = document.getElementById('main-menu');
-
-  if (mainMenuContainer && menuData && Array.isArray(menuData.menu_items)) {
-    let menuHtml = '';
-    
-    // 2. Duyệt qua danh sách menu bạn đã cấu hình trong Admin
-    (menuData.menu_items as MenuItem[]).forEach((item: MenuItem) => {
-      menuHtml += `<li><a href="${item.link}" class="hover:text-amber-500 transition-colors">${item.label}</a></li>`;
-    });
-    
-    // 3. Đổ dữ liệu vào thẻ ul có id="main-menu"
-    mainMenuContainer.innerHTML = menuHtml;
-  }
-};
-
-// Chạy hàm vẽ menu ngay khi hệ thống load xong
+// Sử dụng sự kiện DOMContentLoaded để đảm bảo thẻ HTML đã tải xong
 if (typeof window !== 'undefined') {
-  renderMenu();
+  window.addEventListener('DOMContentLoaded', () => {
+    // Ép kiểu cụ thể cho h2/ul là HTMLUListElement để không bị báo đỏ lỗi innerHTML
+    const mainMenuContainer = document.getElementById('main-menu') as HTMLUListElement | null;
+
+    if (mainMenuContainer && menuData && Array.isArray(menuData.menu_items)) {
+      let menuHtml = '';
+      
+      // 2. Duyệt qua danh sách menu bạn đã cấu hình
+      (menuData.menu_items as MenuItem[]).forEach((item: MenuItem) => {
+        menuHtml += `<li><a href="${item.link}" class="hover:text-amber-500 transition-colors">${item.label}</a></li>`;
+      });
+      
+      // 3. Đổ dữ liệu vào thẻ ul
+      mainMenuContainer.innerHTML = menuHtml;
+    }
+  });
 }
